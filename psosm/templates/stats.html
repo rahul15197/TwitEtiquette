@@ -1,0 +1,128 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>TwitEtiquette</title>
+    <meta name="description" content="How good of a netizen are you!">
+    <meta name="author" content="PSOSM Group 25">
+
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <script>
+        function report_notification() {
+            alert("Report generated and saved as {{ results['screen_name']}}.pdf");
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <header class="text-gray-500 bg-gray-900 body-font">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+            <nav class="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
+                <a class="mr-5 hover:text-white" href='home.html'>Home</a>
+                <a class="mr-5 hover:text-white" href='description.html'>Description</a>
+                <a class="mr-5 hover:text-white" href='readme.html'>Documentation</a>
+                <a class="hover:text-white" href='contact.html'>Team</a>
+            </nav>
+            <a class="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center text-white lg:items-center lg:justify-center mb-4 md:mb-0">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-blue-500 rounded-full" viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                <span class="ml-3 text-xl xl:block lg:hidden">TwitEtiquette</span>
+            </a>
+            <div class="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
+            </div>
+        </div>
+    </header>
+
+    <section class="text-gray-400 bg-gray-900 body-font">
+        <div class="container px-5 py-24 mx-auto flex flex-wrap">
+            <form action="{{ url_for('get_input')}}" method="get">
+                <div class="flex flex-wrap -mx-4 mt-auto mb-auto lg:w-1/2 sm:w-2/3 content-start sm:pr-10">
+                    <div class="w-full sm:p-4 px-4 mb-6">
+                        <h1 class="title-font font-medium text-l mb-2 text-blue-400">{{ results['screen_name']}}</h1>
+                        <h2 class="title-font font-medium text-3xl text-white">{{ results['name']}}</h2>
+
+                        <h2 class="title-font font-medium text-xl text-white">{{ results['bio']}}</h2>
+                        <hr style="margin-top: 45">
+                    </div>
+
+                    <div class="w-full sm:p-4 px-4 mb-6">
+                        <h1 class="title-font font-medium text-l mb-2 text-blue-400">Netizen Score (out of 100)</h1>
+                        <h2 class="title-font font-medium text-3xl text-white">{{ results['score']}}</h2>
+                    </div>
+                    <div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
+                        <h2 class="title-font font-medium text-3xl text-white">{{ results['is_spammer']}}</h2>
+                        <p class="leading-relaxed">Spam</p>
+                    </div>
+                    <div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
+                        <h2 class="title-font font-medium text-3xl text-white">{{ results['post_Interval']}} mins</h2>
+                        <p class="leading-relaxed">Average Posts Interval</p>
+                    </div>
+                    <div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
+                        <h2 class="title-font font-medium text-3xl text-white">{{ results['response_interval']}} mins</h2>
+                        <p class="leading-relaxed">Response Time Interval</p>
+                    </div>
+                    <div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
+                        <h2 class="title-font font-medium text-3xl text-white">{{ results['avg_number_of_hashtags']}}</h2>
+                        <p class="leading-relaxed">Average # of Hashtags</p>
+                    </div>
+                    <div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
+                        <h2 class="title-font font-medium text-3xl text-white">{{ results['percentage_of_capital_letter']}}%</h2>
+                        <p class="leading-relaxed">Capital Letters</p>
+                    </div>
+                    <div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
+                        <h2 class="title-font font-medium text-3xl text-white">{{ results['percentage_of_tweets_greater_than_120_chars']}}%</h2>
+                        <p class="leading-relaxed">Tweets more than 120 char</p>
+                    </div>
+                    <div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
+                        <h2 class="title-font font-medium text-3xl text-white">{{ results['avg_length_of_tweets']}}</h2>
+                        <p class="leading-relaxed">Average Tweet Length</p>
+                    </div>
+                    <div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
+                        <h2 class="title-font font-medium text-3xl text-white">{{ results['count_of_cyberbullying_for_posted_tweets']}}</h2>
+                        <p class="leading-relaxed">Cyberbullying Tweets</p>
+                    </div>
+                    <div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
+                        <h2 class="title-font font-medium text-3xl text-white">{{ results['count_of_cyberbullying_for_liked_tweets']}}</h2>
+                        <p class="leading-relaxed">Cyberbullying Liked Tweets</p>
+                    </div>
+                    <div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
+                        <h2 class="title-font font-medium text-3xl text-white">{{ results['count_of_hatespeech_for_posted_tweets']}}</h2>
+                        <p class="leading-relaxed">Hate Speech Tweets</p>
+                    </div>
+                    <div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
+                        <h2 class="title-font font-medium text-3xl text-white">{{ results['count_of_hatespeech_for_liked_tweets']}}</h2>
+                        <p class="leading-relaxed">Hate Speech Liked Tweets</p>
+                    </div>
+                </div>
+            </form>
+            <div class="container px-5 py-24 mx-auto flex flex-wrap">
+                <form action="{{ url_for('get_report')}}" method="post">
+                    <button onclick="report_notification()" name="reportbutton" type="submit" class="inline-flex text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg">Download Report</button>
+                </form>
+            </div>
+            <div style="margin: 0 auto" class="lg:w-1/2 sm:w-1/3 w-full rounded-lg overflow-hidden mt-6 sm:mt-0">
+                <img class="object-cover object-center w-full h-full" src="{{ results['photo']}}" alt="{{ results['screen_name']}}">
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer class="text-gray-500 bg-gray-900 body-font">
+        <div class="container px-1 py-8 mx-auto flex items-center sm:flex-row flex-col">
+            <a class="flex title-font font-medium items-center md:justify-start justify-center text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-blue-500 rounded-full" viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                <span class="ml-3 text-xl">TwitEtiquette</span>
+            </a>
+            <p class="text-sm text-gray-600 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4">CSE 648 - PSOSM
+            </p>
+        </div>
+    </footer>
+</body>
